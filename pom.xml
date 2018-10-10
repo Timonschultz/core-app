@@ -17,7 +17,6 @@
 
     <modules>
         <module>core-app-web</module>
-        <module>core-app-domain</module>
         <module>core-app-core</module>
         <module>core-app-persistence</module>
         <module>core-app-external</module>
@@ -41,6 +40,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -62,15 +66,14 @@
             </dependency>
             <dependency>
                 <groupId>nl.timonschultz.hots</groupId>
-                <artifactId>core-app-domain</artifactId>
+                <artifactId>core-app-persistence</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>nl.timonschultz.hots</groupId>
-                <artifactId>core-app-persistence</artifactId>
+                <artifactId>core-app-external</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
 
             <dependency>
                 <groupId>org.projectlombok</groupId>
