@@ -28,11 +28,15 @@ public class HeroMapper {
                 .translations(heroType.getTranslations())
                 .role(heroType.getRole())
                 .type(heroType.getType())
-                .releaseDate(LocalDate.parse(heroType.getReleaseDate()))
+                .releaseDate(getDateAsString(heroType))
                 .icon(iconMapper.mapToIcon(heroType.getHeroIcon()))
                 .abilities(abilityMapper.mapToAbilityList(heroType.getAbilities()))
                 .talents(talentMapper.mapToTalentList(heroType.getTalents()))
                 .build();
+    }
+
+    private LocalDate getDateAsString(HeroType heroType) {
+        return (heroType.getReleaseDate() == null ) ? null : LocalDate.parse(heroType.getReleaseDate());
     }
 
 }

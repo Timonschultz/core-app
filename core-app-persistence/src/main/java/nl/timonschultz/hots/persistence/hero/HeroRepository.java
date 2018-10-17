@@ -8,4 +8,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface HeroRepository extends JpaRepository<Hero, Long> {}
+public interface HeroRepository extends JpaRepository<Hero, Long> {
+
+    public boolean existsByName(String name);
+
+}

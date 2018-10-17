@@ -15,7 +15,7 @@
     <dependencies>
         <dependency>
             <groupId>nl.timonschultz.hots</groupId>
-            <artifactId>core-app-persistence</artifactId>
+            <artifactId>core-app-external</artifactId>
         </dependency>
     </dependencies>
 

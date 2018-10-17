@@ -1,5 +1,6 @@
 package nl.timonschultz.hots.external.hotsapi.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,6 +19,8 @@ public class AbilityType {
     private String icon;
     private String hotkey;
     private int cooldown;
+
+    @JsonProperty("mana_cost")
     private int manaCost;
     private boolean trait;
 

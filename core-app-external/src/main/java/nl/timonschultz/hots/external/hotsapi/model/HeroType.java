@@ -15,13 +15,20 @@ import java.util.List;
 public class HeroType {
 
     private String name;
+
+    @JsonProperty("short_name")
     private String shortName;
+
+    @JsonProperty("attribute_id")
     private String attributeId;
     private List<String> translations;
     private String role;
     private String type;
+
     @JsonProperty("icon_url")
     private IconUrlType heroIcon;
+
+    @JsonProperty("release_date")
     private String releaseDate;
     private List<AbilityType> abilities;
     private List<TalentType> talents;

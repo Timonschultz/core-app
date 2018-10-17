@@ -26,13 +26,13 @@ public class Talent extends HasId<Long> {
     @Column(name = "TALENT_TITLE")
     private String title;
 
-    @Column(name = "TALENT_DESCRIPTION")
+
+    @Column(columnDefinition = "TEXT", name = "TALENT_DESCRIPTION")
     private String description;
 
     @Column(name = "TALENT_ICON_FILE_NAME")
     private String iconFileName;
 
-    @Column(name = "TALENT_ICON")
     @OneToOne(cascade = CascadeType.ALL)
     private Icon icon;
 

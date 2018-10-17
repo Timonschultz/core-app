@@ -19,7 +19,7 @@ import javax.persistence.FetchType;
 public class Icon extends HasId<Long> {
 
     @Basic(fetch = FetchType.LAZY)
-    private Byte[] icon;
+    private byte[] icon;
 
     @Column(name = "ICON_URL")
     private String iconUrl;

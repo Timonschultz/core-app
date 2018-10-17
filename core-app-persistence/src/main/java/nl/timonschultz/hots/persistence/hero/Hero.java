@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import nl.timonschultz.hots.persistence.ability.Ability;
 import nl.timonschultz.hots.persistence.common.HasId;
 import nl.timonschultz.hots.persistence.icon.Icon;
@@ -48,15 +49,12 @@ public class Hero extends HasId<Long> {
     @Column(name = "HERO_RELEASE_DATE")
     private LocalDate releaseDate;
 
-    @Column(name = "HERO_ICON")
     @OneToOne(cascade = CascadeType.ALL)
     private Icon icon;
 
-    @Column(name = "HERO_ABILITIES")
     @OneToMany(cascade = CascadeType.ALL)
     private List<Ability> abilities;
 
-    @Column(name = "HERO_TALENTS")
     @OneToMany(cascade = CascadeType.ALL)
     private List<Talent> talents;
 

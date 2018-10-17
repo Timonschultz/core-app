@@ -26,7 +26,7 @@ public class Ability extends HasId<Long> {
     @Column(name = "ABILITY_TITLE")
     private String title;
 
-    @Column(name = "ABILITY_DESCRIPTION")
+    @Column(columnDefinition = "TEXT", name = "ABILITY_DESCRIPTION")
     private String description;
 
     @Column(name = "ABILITY_ICON")
