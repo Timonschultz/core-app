@@ -1,7 +1,8 @@
 package nl.timonschultz.hots.service;
 
+import lombok.extern.slf4j.Slf4j;
 import nl.timonschultz.hots.external.hotsapi.client.HeroClient;
-import nl.timonschultz.hots.external.hotsapi.client.HeroClientImpl;
+import nl.timonschultz.hots.external.hotsapi.client.HotsApiHeroesClient;
 import nl.timonschultz.hots.external.hotsapi.exception.ClientException;
 import nl.timonschultz.hots.external.hotsapi.mapper.HeroMapper;
 import nl.timonschultz.hots.external.hotsapi.model.HeroType;
@@ -12,15 +13,16 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
-public class HeroApi {
+public class HeroService {
 
     private HeroMapper heroMapper;
     private HeroClient heroClient;
     private HeroRepository heroRepository;
 
     @Autowired
-    public HeroApi(HeroMapper heroMapper, HeroClientImpl heroClient, HeroRepository heroRepository) {
+    public HeroService(HeroMapper heroMapper, HotsApiHeroesClient heroClient, HeroRepository heroRepository) {
         this.heroMapper = heroMapper;
         this.heroClient = heroClient;
         this.heroRepository = heroRepository;
@@ -37,6 +39,7 @@ public class HeroApi {
                 count++;
             }
         }
+        log.info("Imported number of heroes: {}", count);
         return count;
     }
 

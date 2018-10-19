@@ -1,8 +1,8 @@
-package nl.timonschultz.hots.importcontroller;
+package nl.timonschultz.hots.controller;
 
-import nl.timonschultz.hots.core.icon.IconService;
+import nl.timonschultz.hots.core.icon.IconCoreService;
 import nl.timonschultz.hots.external.hotsapi.exception.ClientException;
-import nl.timonschultz.hots.service.HeroApi;
+import nl.timonschultz.hots.service.HeroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/import")
 public class ImportController {
 
-    private HeroApi heroService;
-    private IconService iconService;
+    private HeroService heroService;
+    private IconCoreService iconCoreService;
 
     @Autowired
-    public ImportController(HeroApi heroService, IconService iconService) {
+    public ImportController(HeroService heroService, IconCoreService iconCoreService) {
         this.heroService = heroService;
-        this.iconService = iconService;
+        this.iconCoreService = iconCoreService;
     }
 
     @GetMapping(value = "/heroes/all")
@@ -29,7 +29,12 @@ public class ImportController {
 
     @GetMapping(value = "/icons/all")
     public void importIcons() {
-        iconService.importAllIconImages();
+        iconCoreService.importAllIconImages();
+    }
+
+    @GetMapping(value = "/maps/all")
+    public void importMaps() {
+        iconCoreService.importAllIconImages();
     }
 
 

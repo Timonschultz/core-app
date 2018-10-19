@@ -7,16 +7,16 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 
 @Service
-public class HeroService {
+public class HeroCoreService {
 
     private HeroRepository heroRepository;
 
-    public HeroService(HeroRepository heroRepository) {
+    public HeroCoreService(HeroRepository heroRepository) {
         this.heroRepository = heroRepository;
     }
 
     public Hero getHerobyId(final Long id) {
-        return heroRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("No entity with id " + id));
+        return heroRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("No hero with id " + id + " found in the database."));
     }
     
 }

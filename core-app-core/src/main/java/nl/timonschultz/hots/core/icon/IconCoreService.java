@@ -9,13 +9,13 @@ import org.springframework.web.client.RestTemplate;
 
 @Slf4j
 @Service
-public class IconService {
+public class IconCoreService {
 
     private IconRepository iconRepository;
     private RestTemplate restTemplate;
 
     @Autowired
-    public IconService(IconRepository iconRepository) {
+    public IconCoreService(IconRepository iconRepository) {
         this.iconRepository = iconRepository;
         this.restTemplate = new RestTemplate();
     }

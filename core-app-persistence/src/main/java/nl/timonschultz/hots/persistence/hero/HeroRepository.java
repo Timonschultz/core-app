@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface HeroRepository extends JpaRepository<Hero, Long> {
 
-    public boolean existsByName(String name);
+    boolean existsByName(String name);
 
 }
