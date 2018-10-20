@@ -22,7 +22,7 @@ public class HeroesController {
         this.heroService = heroService;
     }
 
-    @GetMapping()
+    @GetMapping("/all")
     public List<HeroNameAndIdAndShortName> getHeroNames() {
         return heroService.getHeroNames();
     }

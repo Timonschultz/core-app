@@ -10,6 +10,7 @@ import nl.timonschultz.hots.persistence.map.MapRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -29,6 +30,15 @@ public class MapService {
     public List<Map> getMaps() {
         return mapRepository.findAll();
     }
+
+    public Map getMap(String name) {
+        return mapRepository.findByName(name).orElseThrow(() -> new EntityNotFoundException("No map with name '" + name + "' found in database"));
+    }
+
+    public Map getMap(Long id) {
+        return mapRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("No map with id '" + id + "' found in database"));
+    }
+
 
     public int importMaps() throws ClientException {
         int count = 0;
