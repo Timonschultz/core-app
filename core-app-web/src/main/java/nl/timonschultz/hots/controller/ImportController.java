@@ -1,8 +1,9 @@
 package nl.timonschultz.hots.controller;
 
-import nl.timonschultz.hots.core.icon.IconCoreService;
+import nl.timonschultz.hots.core.hero.HeroService;
+import nl.timonschultz.hots.core.icon.IconService;
+import nl.timonschultz.hots.core.map.MapService;
 import nl.timonschultz.hots.external.hotsapi.exception.ClientException;
-import nl.timonschultz.hots.service.HeroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,29 +14,31 @@ import org.springframework.web.bind.annotation.RestController;
 public class ImportController {
 
     private HeroService heroService;
-    private IconCoreService iconCoreService;
+    private IconService iconService;
+    private MapService mapService;
 
     @Autowired
-    public ImportController(HeroService heroService, IconCoreService iconCoreService) {
+    public ImportController(HeroService heroService, IconService iconService, MapService mapService) {
         this.heroService = heroService;
-        this.iconCoreService = iconCoreService;
+        this.iconService = iconService;
+        this.mapService = mapService;
     }
 
-    @GetMapping(value = "/heroes/all")
+    @GetMapping("/heroes/all")
     public String importHeroes() throws ClientException {
         int imports = heroService.importHeroes();
         return imports + " Heroes imported into the database";
     }
 
-    @GetMapping(value = "/icons/all")
+    @GetMapping("/icons/all")
     public void importIcons() {
-        iconCoreService.importAllIconImages();
+        iconService.importAllIconImages();
     }
 
-    @GetMapping(value = "/maps/all")
-    public void importMaps() {
-        iconCoreService.importAllIconImages();
+    @GetMapping("/maps/all")
+    public String importMaps() throws ClientException {
+        int count = mapService.importMaps();
+        return count + " maps imported into the datase";
     }
-
 
 }

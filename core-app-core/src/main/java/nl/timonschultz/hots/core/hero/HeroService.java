@@ -1,4 +1,4 @@
-package nl.timonschultz.hots.service;
+package nl.timonschultz.hots.core.hero;
 
 import lombok.extern.slf4j.Slf4j;
 import nl.timonschultz.hots.external.hotsapi.client.HeroClient;
@@ -7,10 +7,12 @@ import nl.timonschultz.hots.external.hotsapi.exception.ClientException;
 import nl.timonschultz.hots.external.hotsapi.mapper.HeroMapper;
 import nl.timonschultz.hots.external.hotsapi.model.HeroType;
 import nl.timonschultz.hots.persistence.hero.Hero;
+import nl.timonschultz.hots.persistence.hero.HeroNameAndIdAndShortName;
 import nl.timonschultz.hots.persistence.hero.HeroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Slf4j
@@ -28,6 +30,18 @@ public class HeroService {
         this.heroRepository = heroRepository;
     }
 
+    public Hero getHero(final Long id) {
+        return heroRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("No hero with id " + id + " found in the database."));
+    }
+
+    public Hero getHero(String shortName) {
+        return heroRepository.findByShortName(shortName).orElseThrow(() -> new EntityNotFoundException("No hero with name '" + shortName + "' present in database"));
+    }
+
+    public List<HeroNameAndIdAndShortName> getHeroNames() {
+        return heroRepository.getIdAndName();
+    }
+
     public int importHeroes() throws ClientException {
         int count = 0;
         List<HeroType> heroes = heroClient.getHeroesFromAPI();
@@ -42,5 +56,6 @@ public class HeroService {
         log.info("Imported number of heroes: {}", count);
         return count;
     }
+
 
 }
