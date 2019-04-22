@@ -9,4 +9,5 @@ public class IconNoImageException extends Exception {
     public IconNoImageException(String message) {
         super(message);
     }
+
 }

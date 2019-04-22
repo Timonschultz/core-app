@@ -14,7 +14,7 @@ public class TalentType {
     private String title;
     private String description;
 
-    @JsonProperty("icon")
+    @JsonProperty("iconImage")
     private String iconFileName;
 
     @JsonProperty("icon_url")

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.persistence.EntityNotFoundException;
 
 @RestController
-@RequestMapping(value = "/icon")
+@RequestMapping(value = "/iconImage")
 public class IconController {
 
     private IconRepository iconRepository;
@@ -24,10 +24,10 @@ public class IconController {
 
     @GetMapping(value = "/{id}", produces = "image/jpg")
     public byte[] getIcon(@PathVariable("id") Long id) throws IconNoImageException {
-        Icon icon = iconRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("No icon with id " + id));
-        if (icon.getIcon() == null)
+        Icon icon = iconRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("No iconImage with id " + id));
+        if (icon.getIconImage() == null)
             throw new IconNoImageException("Icon with id " + id + " has no image in the database");
-        return icon.getIcon();
+        return icon.getIconImage();
     }
 
 }

@@ -37,7 +37,7 @@ public class IconService {
     private void saveIconImageFromUrl(int id) {
         iconRepository.findById(Long.valueOf(id)).ifPresent(icon -> {
             byte[] imageBytes = restTemplate.getForObject(icon.getIconUrl(), byte[].class);
-            icon.setIcon(imageBytes);
+            icon.setIconImage(imageBytes);
             iconRepository.save(icon);
         });
     }
